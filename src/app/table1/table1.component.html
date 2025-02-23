@@ -1,6 +1,10 @@
 <div class="card">
 
-    <p-table #dt2 [value]="products" [globalFilterFields]="['code', 'name', 'category', 'quantity']"
+    <p-table #dt2 [value]="products"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [paginator]="true"
+    [globalFilterFields]="['code', 'name', 'category', 'quantity']"
         [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template #caption>
             <div class="flex">
@@ -10,9 +14,9 @@
         </ng-template>
         <ng-template #header>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Category</th>
+                <th pSortableColumn="code">Code<p-sortIcon field="code"/></th>
+                <th pEditableColumn="name">Name<p-sortIcon field="name"/></th>
+                <th p>Category</th>
                 <th>Quantity</th>
             </tr>
         </ng-template>
