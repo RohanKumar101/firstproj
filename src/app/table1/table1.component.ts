@@ -1,14 +1,38 @@
 import { Component, ViewChild } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
+import { MessageService, SelectItem } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext'
+import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
 
+
+interface Product {
+    id: string;
+    code: string;
+    name: string;
+    description: string;
+    image: string;
+    price: number;
+    category: string;
+    quantity: number;
+    inventoryStatus: string;
+    rating: number;
+}
 
 @Component({
     selector: 'app-table1',
     standalone: true,
-    imports: [CommonModule, TableModule],
+    imports: [CommonModule, 
+        TableModule, 
+        InputTextModule,
+        ButtonModule,
+        FormsModule
+    ],
     templateUrl: './table1.component.html',
-    styleUrl: './table1.component.scss'
+    styleUrl: './table1.component.scss',
+    providers: [MessageService]
+
 })
 export class Table1Component {
 
@@ -374,7 +398,9 @@ export class Table1Component {
             rating: 8
         }
     ];
-    constructor() { }
+    clonedProducts: { [s: string]: Product } = {};
+
+    constructor(private messageService: MessageService) { }
 
     ngOnInit() {
 
@@ -386,6 +412,21 @@ export class Table1Component {
           this.dt2?.filterGlobal(inputElement.value, 'contains');
         }
       }
+
+  onRowEditCancel(product: any, ri: number): void {
+  
+    console.log('Row edit cancelled for product:', product, 'at row index:', ri);
+  }
+  onRowEditSave(product: any) {
+    
+    console.log('Row edit saved', product);
+}
+
+
+  onRowEditInit(product: any) {
+   
+    console.log('Row edit initialized', product);
+  }
       
       
 }
