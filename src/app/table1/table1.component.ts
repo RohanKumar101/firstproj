@@ -4,9 +4,9 @@ import { MessageService, SelectItem } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext'
 import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
-
-
+import { TagModule } from 'primeng/tag';
+import { FormsModule } from '@angular/forms';//imported FormsModule for ngModel
+//{reactiveFormsModule} for reactive forms
 interface Product {
     id: string;
     code: string;
@@ -27,15 +27,19 @@ interface Product {
         TableModule, 
         InputTextModule,
         ButtonModule,
-        FormsModule
+        FormsModule,
+        TagModule
     ],
     templateUrl: './table1.component.html',
     styleUrl: './table1.component.scss',
     providers: [MessageService]
 
 })
-export class Table1Component {
 
+
+export class Table1Component {
+    tagValue: string = 'hii';
+    
     products: any[] = [
         {
             id: '1000',
